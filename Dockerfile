@@ -13,8 +13,8 @@ RUN apt-get install -y software-properties-common
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
 RUN add-apt-repository 'deb http://repos.azulsystems.com/ubuntu stable main'
 RUN apt-get update
-RUN apt-get install --auto-remove --no-install-recommends --no-install-suggests --show-upgraded --yes \
-  zulu-21
+# RUN apt-get install --auto-remove --no-install-recommends --no-install-suggests --show-upgraded --yes \
+#   zulu-8-azure-jdk
 
 RUN apt-get update && apt-get install -y docker-ce-cli zulu21-jdk
 
