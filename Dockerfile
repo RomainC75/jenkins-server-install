@@ -9,7 +9,7 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
 # install azure-cli
-RUN apt-get install software-properties-common
+RUN apt-get install -y software-properties-common
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
 RUN add-apt-repository 'deb http://repos.azulsystems.com/ubuntu stable main'
 RUN apt-get update
