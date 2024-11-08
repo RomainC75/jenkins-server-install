@@ -10,7 +10,7 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
 
 # install azure-cli
 RUN apt install gnupg ca-certificates curl
-RUN curl -s https://repos.azul.com/azul-repo.key | sudo gpg --dearmor -o /usr/share/keyrings/azul.gpg
+RUN curl -s https://repos.azul.com/azul-repo.key | gpg --dearmor -o /usr/share/keyrings/azul.gpg
 RUN echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | sudo tee /etc/apt/sources.list.d/zulu.list
 RUN apt update
 
