@@ -9,9 +9,11 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
 # install azure-cli
-RUN apt install gnupg ca-certificates curl
-RUN curl -s https://repos.azul.com/azul-repo.key | sudo gpg --dearmor -o /usr/share/keyrings/azul.gpg
-RUN echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | sudo tee /etc/apt/sources.list.d/zulu.list
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+RUN apt-add-repository 'deb http://repos.azulsystems.com/ubuntu stable main'
+RUN apt-get update
+RUN apt-get install --auto-remove --no-install-recommends --no-install-suggests --show-upgraded --yes \
+  zulu-21
 
 RUN apt-get update && apt-get install -y docker-ce-cli zulu21-jdk
 
