@@ -9,14 +9,13 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
 # install azure-cli
-RUN apt-get install -y software-properties-common
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
-RUN add-apt-repository 'deb http://repos.azulsystems.com/ubuntu stable main'
 RUN apt-get update
-# RUN apt-get install --auto-remove --no-install-recommends --no-install-suggests --show-upgraded --yes \
-#   zulu-8-azure-jdk
+RUN apt-get install gnupg curl
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+curl -O https://cdn.azul.com/zulu/bin/zulu-repo_1.0.0-2_all.deb
+RUN apt-get install ./zulu-repo_1.0.0-2_all.deb
 
-RUN apt-get update && apt-get install -y docker-ce-cli zulu21-jdk
+RUN apt-get update && apt-get install -y docker-ce-cli
 
 # install azure cli
 # RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
